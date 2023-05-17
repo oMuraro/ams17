@@ -1,5 +1,8 @@
 const btnListarAulas = document.querySelector('#listar-aulas');
 const divResultado = document.querySelector('#resultado');
+const btnGerarHash = document.querySelector('#gerar-hash');
+const inputHash = document.querySelector('#hash');
+const outputHash = document.querySelector('#resultado-hash');
 
 btnListarAulas.addEventListener("click", async function() {
     const result = await fetch("http://localhost/ams/")
@@ -28,3 +31,12 @@ const montarHTMLAulas = (aulas) => {
         divResultado.appendChild(btn);
     });
 }
+
+
+btnGerarHash.addEventListener("click", async function() {
+   const geraHash = await fetch("http://localhost/ams/hash/" + inputHash.value)
+    .then((response) => {
+        return response.json();
+    })
+    outputHash.innerHTML = geraHash;
+})
